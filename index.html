@@ -35,7 +35,8 @@
 <p>在之前的<a href="http://wangfakang.github.io/sky16/">动态upstream管理项目中</a>有提到在进行集群管理nginx的动态upstream的时候是使用
   consul相关组件来做得,其实我们也可以利用redis的pub\sub机制来进行管理集群的nginx的动态upstream的下发.  </p>
 
-<p>基本原理:       </p>
+<p>基本原理:
+ ===</p>
 
 <ul>
 <li>1.nginx相关前端机的redis订阅主redis的相关信息.<br>
@@ -46,8 +47,10 @@
 </li>
 </ul>
 
-<p>简单实列:<br>
-订阅端:<br>
+<h1>
+<a id="简单实列--" class="anchor" href="#%E7%AE%80%E5%8D%95%E5%AE%9E%E5%88%97--" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>简单实列:  </h1>
+
+<p>订阅端:<br>
  订阅端订阅了两个通道的消息.   </p>
 
 <pre><code>fakang@fakang-pc:~$ redis-cli 
@@ -77,7 +80,8 @@ Reading messages... (press Ctrl-C to quit)
 
 <p>注: 上面的这个interger: 1是表示此时只有一个成功订阅端订阅了china这个topic.   </p>
 
-<p>redis的pub\sub的简单解析:</p>
+<h1>
+<a id="redis的pubsub的简单解析" class="anchor" href="#redis%E7%9A%84pubsub%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%A3%E6%9E%90" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>redis的pub\sub的简单解析:</h1>
 
 <p>1.其实redis在发布端维护了一种表,这张表,这张表饿内容就是:以相关通道名称(如china  japan)为key,然后相关的订阅端为value
   进行的一个hash表,如果同一个通道(如china)此时有两个client进行了订阅,则此时key为china的后面就是一个链表挂载了两个
